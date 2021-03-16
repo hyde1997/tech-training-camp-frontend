@@ -1,11 +1,14 @@
 <template>
   <div id="editor-main">
-    <!-- 工具栏 -->
-    <tool-bar />
-    <!-- 编辑展示区域 -->
-    <container />
-    <!-- 底部footer -->
-    <footer-bar />
+    <h2 class="title">tech-training-camp-frontend</h2>
+    <div class="border">
+      <!-- 工具栏 -->
+      <tool-bar />
+      <!-- 编辑展示区域 -->
+      <container />
+      <!-- 底部footer -->
+      <footer-bar />
+    </div>
   </div>
 </template>
 
@@ -21,9 +24,28 @@ export default {
 </script>
 
 <style scoped>
+.title {
+  position: absolute;
+  left: 50%;
+  top: 2%;
+  transform: translateX(-50%);
+  font-size: 30px;
+  font-weight: 700;
+  color: rgb(253, 189, 199);
+}
 #editor-main {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
-  background-color: black;
+  box-sizing: border-box;
+  padding: 6% 10% 4% 10%;
+  background: linear-gradient(to top, #77acac, #5a7599);
+}
+.border {
+  width: 100%;
+  height: 100%;
+  border: 3px inset rgba(146, 164, 175, 0.3);
+  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.157), 0 0px 3px rgba(0, 0, 0, 0.227);
 }
 </style>

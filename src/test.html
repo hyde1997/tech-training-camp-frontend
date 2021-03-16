@@ -6,25 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .edit {
+      * {
+        margin: 0;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      .editor {
+        display: flex;
         width: 100%;
-        height: 600px;
+        height: 100%;
         background-color: pink;
       }
       .textarea {
-        width: 90%;
-        height: calc(100% - 40px - 4px);
-        margin: 0 auto;
-        padding: 20px;
-        border: 2px solid #eee;
-        overflow: hidden;
+        flex: 1;
+        margin: 50px;
+        padding: 10px;
+        border: 5px solid indianred;
         outline: none;
+        background-color: #eee;
+      }
+      .display {
+        flex: 1;
+        margin: 50px;
+        padding: 10px;
+        border: 5px dashed skyblue;
+        background-color: antiquewhite;
       }
     </style>
   </head>
   <body>
-    <div class="edit">
-      <div contenteditable="true" class="textarea"></div>
+    <div class="editor">
+      <div contenteditable="true" class="textarea" id="markdown-content">
+        ## Heading
+      </div>
+      <div class="display" contenteditable="true" id="#output"></div>
     </div>
+    <script src="./require.js"></script>
+    <script
+      mode="moudle"
+      src="../node_modules/markdown-it/dist/markdown-it.js"
+    ></script>
+    <script>
+      var md = require("markdown-it")();
+      var result = md.render("# markdown-it rulezz!");
+      var markdown = $("#markdown-content").html();
+      var html = md.render(markdown);
+      $("#output").html(html);
+    </script>
   </body>
 </html>
