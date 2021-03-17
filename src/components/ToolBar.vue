@@ -81,7 +81,7 @@
         <em class="iconfont logo">&#xe69d;</em>
       </div>
     </div>
-    <div class="toolbar-right">右侧视图工具栏</div>
+    <div class="toolbar-right"></div>
   </div>
 </template>
 
@@ -238,7 +238,6 @@ export default {
   float: right;
   width: 150px;
   height: 100%;
-  background-color: cornsilk;
   margin-right: 3%;
 }
 </style>

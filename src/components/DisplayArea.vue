@@ -121,12 +121,12 @@ code {
 /* 引用样式 */
 blockquote {
   margin-left: 1em;
-  padding: 1px 0 1px 15px;
+  padding: 1px 5px 1px 15px;
   border-left: 6px solid #46bba9;
   border-radius: 5px;
   background-color: #f6f6f6;
   color: #000;
-  line-height: 0.4375rem;
+  line-height: 1.5rem;
 }
 /* 表格样式 */
 table {
