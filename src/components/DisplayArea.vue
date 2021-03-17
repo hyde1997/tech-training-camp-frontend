@@ -6,118 +6,76 @@
 </template>
 
 <script>
-// import marked from "marked"; //将mardown转成HTML的库
+import hljs from "highlight.js";
+import "highlight.js/styles/an-old-hope.css";
+
+// 代码高亮
+const highlightCode = () => {
+  const block = document.querySelectorAll("pre code");
+  // console.log(block);
+  block.forEach(el => {
+    hljs.highlightBlock(el);
+  });
+};
+
+const emoji = require("markdown-it-emoji");
+// 下标
+const sub = require("markdown-it-sub");
+// 上标
+const sup = require("markdown-it-sup");
+// 缩写<abbr/>
+const abbr = require("markdown-it-abbr");
+// 脚注footnote
+const footnote = require("markdown-it-footnote");
+// 下划线
+const insert = require("markdown-it-ins");
+// mark
+const mark = require("markdown-it-mark");
+// taskLists
+const taskLists = require("markdown-it-task-lists");
+//
+const toc = require("markdown-it-toc");
+//图片预览
+const miip = require("markdown-it-images-preview");
+
 var md = require("markdown-it")({
   html: true,
   linkify: true,
   typographer: true
-});
+})
+  .use(emoji)
+  .use(sup)
+  .use(sub)
+  .use(abbr)
+  .use(footnote)
+  .use(insert)
+  .use(mark)
+  .use(miip)
+  .use(taskLists)
+  .use(toc);
 
 export default {
   name: "DisplayArea",
   data() {
     return {};
   },
-  // methods: {
-  //   //内联JS语句
-  //   Bold() {
-  //     //粗体
-  //     this.changeSelectedText("**", "**");
-  //   },
-  //   Italic() {
-  //     //斜体
-  //     this.changeSelectedText("*", "*");
-  //   },
-  //   Underline() {
-  //     //下划线
-  //     this.changeSelectedText("<u>", "</u>");
-  //   },
-  //   Strike() {
-  //     //中划线
-  //     this.changeSelectedText("~~", "~~");
-  //   },
-  //   H1_title() {
-  //     //一级标题
-  //     this.changeSelectedText("# ", "\n");
-  //   },
-  //   H2_title() {
-  //     //二级标题
-  //     this.changeSelectedText("## ", "\n");
-  //   },
-  //   H3_title() {
-  //     //三级标题
-  //     this.changeSelectedText("### ", "\n");
-  //   },
-  //   unordered_list() {
-  //     //无序列表
-  //     this.changeSelectedText("* ", "\n");
-  //   },
-  //   ordered_list() {
-  //     //有序列表
-  //     this.changeSelectedText("1. ", "\n");
-  //   },
-  //   figure() {
-  //     //插入图片
-  //     this.changeSelectedText("![", "]()");
-  //   },
-  //   link() {
-  //     //插入超链接
-  //     this.changeSelectedText("[", "]()");
-  //   },
-  //   quote() {
-  //     //引用
-  //     this.changeSelectedText("> ", "\n");
-  //   },
-  //   code() {
-  //     //插入代码块
-  //     this.changeSelectedText("```\n", "\n```");
-  //   },
-  //   inline_code() {
-  //     //文本中插入代码(内联)
-  //     this.changeSelectedText("`", "`");
-  //   },
-  //   separate() {
-  //     //添加分割线
-  //     this.changeSelectedText("\n---", "\n");
-  //   },
-  //   changeSelectedText(startString, endString) {
-  //     let t = this.$refs.editor;
-  //     if (window.getSelection) {
-  //       if (t.selectionStart != undefined && t.selectionEnd != undefined) {
-  //         //str2为鼠标选中的文本，str1和str3为其前后的文本
-  //         let str1 = t.value.substring(0, t.selectionStart);
-  //         let str2 = t.value.substring(t.selectionStart, t.selectionEnd);
-  //         let str3 = t.value.substring(t.selectionEnd);
-
-  //         let result = str1 + startString + str2 + endString + str3;
-  //         t.innerText = result;
-  //         this.$store.state.htmltext = t.innerText;
-  //       }
-  //     }
-  //   }
-  // },
   computed: {
     convert() {
-      // marked.setOptions({
-      //   renderer: new marked.Renderer(),
-      //   gfm: true,
-      //   tables: true,
-      //   breaks: true,
-      //   pedantic: false,
-      //   sanitize: false,
-      //   smartLists: true,
-      //   smartypants: false
-      // });
-      // let newText = marked(this.$store.state.htmltext);
       let newText = md.render(this.$store.state.htmltext);
-      //调用marked函数将mardown文件转成HTML
+      console.log(newText);
       return newText;
     }
+  },
+  mounted() {
+    highlightCode();
+  },
+  updated() {
+    highlightCode();
   }
 };
 </script>
 
-<style scoped>
+<style>
 .display {
   float: right;
   width: 50%;
@@ -135,7 +93,6 @@ export default {
   margin: 0 auto;
   padding: 3% 5%;
   outline: none;
-  word-wrap: break-word;
 }
 /* 滚动条设置 */
 .display::-webkit-scrollbar {
@@ -144,11 +101,57 @@ export default {
   background: #e1e4e8;
   border-radius: 2px; /*外层轨道*/
 }
+
 .display::-webkit-scrollbar-thumb {
   display: block;
   width: 2px;
   margin: 0 auto;
   border-radius: 2px;
   background: #c9cdd4; /*内层轨道*/
+}
+
+/* 行内代码块样式 */
+code {
+  margin: 5px;
+  padding: 3px;
+  border-radius: 5px;
+  color: rgb(255, 81, 162);
+  background-color: rgb(245, 245, 245);
+}
+/* 引用样式 */
+blockquote {
+  margin-left: 1em;
+  padding: 1px 0 1px 15px;
+  border-left: 6px solid #46bba9;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+  color: #000;
+  line-height: 0.4375rem;
+}
+/* 表格样式 */
+table {
+  width: 100%; /*表格宽度*/
+  max-width: 65em; /*表格最大宽度，避免表格过宽*/
+  border: 1px solid #dedede; /*表格外边框设置*/
+  margin: 15px auto; /*外边距*/
+  border-collapse: collapse; /*使用单一线条的边框*/
+  empty-cells: show; /*单元格无内容依旧绘制边框*/
+}
+table th,
+table td {
+  height: 35px; /*统一每一行的默认高度*/
+  border: 1px solid #dedede; /*内部边框样式*/
+  padding: 0 10px; /*内边距*/
+}
+table th {
+  font-weight: bold; /*加粗*/
+  text-align: center !important; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
+  background: rgba(158, 188, 226, 0.2); /*背景色*/
+}
+table tbody tr:nth-child(2n) {
+  background: rgba(158, 188, 226, 0.12);
+}
+table tr:hover {
+  background: #efefef;
 }
 </style>

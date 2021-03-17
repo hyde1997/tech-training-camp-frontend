@@ -23,7 +23,7 @@ export default {
 <style scoped>
 .container {
   width: 100%;
-  height: calc(100% - 48px - 20px - 4px);
+  height: calc(100% - 30px - 20px - 4px);
   border-top: 2px solid #ddd;
   border-bottom: 2px solid #e1e4e8;
   background-color: pink;

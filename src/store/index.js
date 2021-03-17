@@ -3,13 +3,13 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-// var md = require("markdown-it")();
 import presetText from "../assets/presetText";
 
 export default new Vuex.Store({
   state: {
     htmltext: presetText,
-    editor: null
+    editor: null,
+    displayText: ""
   },
   mutations: {
     update(state, newText) {
@@ -19,20 +19,26 @@ export default new Vuex.Store({
       state.editor = obj;
       // console.log(state.editor);
     },
-    changeSelectedText(state, markString) {
-      let t = state.editor;
-      console.log(t);
-      // t.focus(); // markdownit项目
+    highlight(state, str) {
+      state.displayText = str;
+    },
+    modify(state, markString) {
+      let obj = state.editor;
+      // console.log(t);
+      // obj.focus(); // markdownit项目
       if (window.getSelection) {
-        if (t.selectionStart != undefined && t.selectionEnd != undefined) {
-          //str2为鼠标选中的文本，str1和str3为其前后的文本
-          let str1 = t.value.substring(0, t.selectionStart);
-          let str2 = t.value.substring(t.selectionStart, t.selectionEnd);
-          let str3 = t.value.substring(t.selectionEnd);
+        if (obj.selectionStart != undefined && obj.selectionEnd != undefined) {
+          //middle为鼠标选中的文本，head和tail为其前后的文本
+          let head = obj.value.substring(0, obj.selectionStart);
+          let middle = obj.value.substring(
+            obj.selectionStart,
+            obj.selectionEnd
+          );
+          let tail = obj.value.substring(obj.selectionEnd);
 
-          let result = str1 + markString[0] + str2 + markString[1] + str3;
-          t.value = result;
-          state.htmltext = t.value;
+          let result = head + markString[0] + middle + markString[1] + tail;
+          obj.value = result;
+          state.htmltext = obj.value;
         }
       }
     }

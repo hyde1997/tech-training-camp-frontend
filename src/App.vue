@@ -17,6 +17,7 @@ export default {
 
 <style>
 @import "assets/css/base.css";
+
 html,
 body {
   width: 100%;

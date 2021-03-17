@@ -47,6 +47,7 @@ export default {
   height: 100%;
   box-sizing: border-box;
   overflow: hidden;
+  border-right: 1px solid #e1e4e8;
   background-color: #f8f9fa;
 }
 .markArea {
