@@ -6,7 +6,7 @@
 
 ### 必须实现的功能包括
 
-- #### **完全支持GitHub的标准Markdown语法**（格式参考[这个文件](https://github.github.com/gfm/)）
+- #### **完全支持GitHub的标准Markdown语法**（格式参考[Github规范](https://github.github.com/gfm/)）
 
 - #### **支持使用顶部工具栏按钮进行操作**
 
@@ -37,8 +37,8 @@
 3. markdown语法转html
 4. 快捷工具栏
 5. 实时对齐
-6. 共享文档
-7. 系统编辑
+6. 后端存储
+7. 在线编辑
 
 
 
