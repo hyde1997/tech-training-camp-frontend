@@ -26,11 +26,14 @@ export default {
 <style scoped>
 .title {
   position: absolute;
+  width: 800px;
   left: 50%;
   top: 2%;
   transform: translateX(-50%);
-  font-size: 30px;
+  font-size: 1.875rem;
   font-weight: 700;
+  text-align: center;
+
   color: rgb(253, 189, 199);
 }
 #editor-main {

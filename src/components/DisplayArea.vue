@@ -62,7 +62,7 @@ export default {
   computed: {
     convert() {
       let newText = md.render(this.$store.state.htmltext);
-      console.log(newText);
+      // console.log(newText);
       return newText;
     }
   },

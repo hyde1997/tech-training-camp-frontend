@@ -29,6 +29,8 @@ head {
 }
 #app {
   width: 100%;
+  min-width: 800px;
+  min-height: 600px;
   height: 100%;
   background-color: pink;
 }
