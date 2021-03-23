@@ -24,7 +24,7 @@ export default new Vuex.Store({
     },
     modify(state, markString) {
       let obj = state.editor;
-      // console.log(t);
+      // console.log(obj);
       // obj.focus(); // markdownit项目
       if (window.getSelection) {
         if (obj.selectionStart != undefined && obj.selectionEnd != undefined) {

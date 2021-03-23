@@ -21,10 +21,32 @@ let presetText =
   "|壮志未酬|《破阵子》|词至此亦足矣||\n" +
   "\n" +
   "\n" +
+  "![image.png](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4757bd84d8b8477aad7f7ba5ccfe92f8~tplv-k3u1fbpfcp-watermark.image)" +
+  "\n" +
   "# Code\n" +
   "```javascript\n" +
-  "const quickSort = nums => { \n" +
-  "  partition\n" +
+  "var sortArray = function(nums) { \n" +
+  "  if (nums.length < 2) return nums;\n" +
+  "    return sort(nums, 0, nums.length - 1);\n" +
+  "  }\n" +
+  "  const sort = (nums, start, end) => {\n" +
+  "  const index = partition(nums, start, end);\n" +
+  "  if (start < index - 1) sort(nums, start, index- 1);\n" +
+  "  if (index < end) sort(nums, index, end);\n" +
+  "  return nums;\n" +
+  "}\n" +
+  "const partition = (nums, l, r) => {\n" +
+  "  const p = nums[l + ((r - l) >> 1)];\n" +
+  "  while (l <= r) {\n" +
+  "    while (nums[l] < p) l++;\n" +
+  "    while (nums[r] > p) r--;\n" +
+  "    if (l <= r) {\n" +
+  "      [nums[l], nums[r]] = [nums[r], nums[l]];\n" +
+  "      l++;\n" +
+  "      r--;\n" +
+  "    }\n" +
+  "  }\n" +
+  "  return l;\n" +
   "}\n" +
   "```\n" +
   "\n" +

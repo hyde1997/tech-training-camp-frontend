@@ -35,6 +35,40 @@
 - 	使用hljs进行代码高亮
 - 	使用阿里图标库进行美化
 
+### 目录结构
+
+```javascript
+tech-training-camp-frontend
+├─ src
+│  ├─ App.vue
+│  ├─ assets
+│  │  ├─ css
+│  │  │  ├─ base.css
+│  │  │  ├─ github.css
+│  │  │  └─ normalize.css
+│  │  ├─ iconfont
+│  │  │  ├─ iconfont.eot
+│  │  │  ├─ iconfont.svg
+│  │  │  ├─ iconfont.ttf
+│  │  │  ├─ iconfont.woff
+│  │  │  └─ iconfont.woff2
+│  │  ├─ img
+│  │  └─ presetText.js
+│  ├─ components
+│  │  ├─ Container.vue
+│  │  ├─ DisplayArea.vue
+│  │  ├─ EditArea.vue
+│  │  ├─ EditorMain.vue
+│  │  ├─ Footer.vue
+│  │  └─ ToolBar.vue
+│  ├─ main.js
+│  └─ store
+│     └─ index.js
+└─ vue.config.js
+```
+
+
+
 ## 三、问题记录
 
 1. 创建项目
